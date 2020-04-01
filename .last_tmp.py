@@ -4,17 +4,17 @@ import aiohttp
 import discord
 import messageBox
 
-BEARER_TOKEN = 'Njk0NzY1OTgyNzYxMzUzMjc2.XoQcAA.XyRQXS-hWcDpOCV5Ac9CFmazh0U'
+BEARER_TOKEN = ''
 URL = 'https://api-quiz.hype.space/shows/now?type='
 HEADERS = {
-    'Authorization': f'Bearer {Njk0NzY1OTgyNzYxMzUzMjc2.XoQcAA.XyRQXS-hWcDpOCV5Ac9CFmazh0U}',
+    'Authorization': f'Bearer {BEARER_TOKEN}',
     'x-hq-client': 'Android/1.3.0'
 }
 
 
 async def request(method: str, url: str, headers: dict = None,
                   data: dict = None, stringify: bool = True,
-                  username: str=kanha, password: str=kanha):
+                  username: str=None, password: str=None):
     """
         Asynchronous request that supports authentication and all
         RESTful HTTP calls. Returns back a JSON dict.
@@ -56,7 +56,7 @@ async def getBroadcast():
     return r.get('broadcast')
 
 
-async def websocketHandler(url: str, channel: 488315865754763264,
+async def websocketHandler(url: str, channel: discord.TextChannel,
                            resetFunc, messageBox: messageBox.MessageBox):
     """
         Handles websocket connections to HQ. Will retrieve both questions
